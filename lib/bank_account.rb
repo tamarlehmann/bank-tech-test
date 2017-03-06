@@ -5,7 +5,7 @@ class BankAccount
   attr_reader :balance, :transaction_history
   MIN_BALANCE = 0
 
-  def initialize(balance, history = TransactionHistory.new)
+  def initialize(balance = 0, history = TransactionHistory.new)
     @balance = balance
     @transaction_history = history
   end
