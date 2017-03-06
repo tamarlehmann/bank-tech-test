@@ -6,6 +6,10 @@ describe BankAccount do
   let(:transaction) {double :transaction }
   subject(:account) { BankAccount.new(balance, history) }
 
+  before do
+    allow(history).to receive(:add_transaction).and_return(:transaction)
+  end
+
   describe "::new" do
     it "Creates a new bank account with a balance of 0" do
       expect(account.balance).to eq(balance)
@@ -20,7 +24,6 @@ describe BankAccount do
     let(:deposit_amount) { 100 }
 
     it "Increases account balance with value of the deposit" do
-      allow(history).to receive(:add_transaction).and_return(:transaction)
       expect{ account.deposit(deposit_amount) }.to change{ account.balance }.by(deposit_amount)
     end
   end
@@ -30,7 +33,6 @@ describe BankAccount do
     let(:withdrawal_amount) { 20 }
 
     it "Decreases account balance with value of the withdrawal" do
-      allow(history).to receive(:add_transaction).and_return(:transaction)
       account.deposit(deposit_amount)
       expect{ account.withdrawal(withdrawal_amount) }.to change{ account.balance }.by(-withdrawal_amount)
     end
