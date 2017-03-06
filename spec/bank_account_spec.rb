@@ -17,4 +17,23 @@ describe BankAccount do
       expect{ account.deposit(deposit_amount) }.to change{ account.balance }.by(deposit_amount)
     end
   end
+
+  describe "#withdrawal" do
+    let(:deposit_amount) { 20 }
+    let(:withdrawal_amount) { 20 }
+    let(:large_withdrawal_amount) { 21 }
+
+    before do
+      account.deposit(deposit_amount)
+    end
+
+    it "Decreases account balance with value of the withdrawal" do
+      expect{ account.withdrawal(withdrawal_amount) }.to change{ account.balance }.by(-withdrawal_amount)
+    end
+
+    it "Does not allow withdrawal when there are insufficient funds" do
+      message = "You have insufficient funds, the maximum you can withdraw is #{account.balance}"
+      expect{ account.withdrawal(large_withdrawal_amount)}.to raise_error(message)
+    end
+  end
 end
