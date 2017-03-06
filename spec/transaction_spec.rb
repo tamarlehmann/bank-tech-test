@@ -24,4 +24,18 @@ describe Transaction do
       expect(transaction.transaction_type).to eq(transaction_type)
     end
   end
+
+  describe "Updating Transaction Type" do
+    describe "#credit_transaction" do
+      it "Updates transaction type to credit" do
+        expect{ transaction.credit_transaction }.to change{ transaction.transaction_type }.from(nil).to("credit")
+      end
+    end
+
+    describe "#debit_transaction" do
+      it "Updates transaction type to debit" do
+        expect{ transaction.debit_transaction }.to change{ transaction.transaction_type }.from(nil).to("debit")
+      end
+    end
+  end
 end

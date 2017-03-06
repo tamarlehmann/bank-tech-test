@@ -8,4 +8,12 @@ class Transaction
     @transaction_type = type
   end
 
+  def credit_transaction
+    @transaction_type = "credit"
+  end
+
+  def debit_transaction
+    @transaction_type = "debit"
+  end
+
 end
