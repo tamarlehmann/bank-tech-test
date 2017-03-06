@@ -1,10 +1,11 @@
 require_relative 'transaction'
+require_relative 'transaction_history'
 
 class BankAccount
   attr_reader :balance, :transaction_history
   MIN_BALANCE = 0
 
-  def initialize(balance, history = [])
+  def initialize(balance, history = TransactionHistory.new)
     @balance = balance
     @transaction_history = history
   end
@@ -13,7 +14,7 @@ class BankAccount
     @balance += amount
     @transaction = Transaction.new(@balance, amount)
     @transaction.credit_transaction
-    complete_transaction
+    complete_transaction(@transaction)
   end
 
   def withdrawal(amount)
@@ -22,13 +23,13 @@ class BankAccount
     @balance -= amount
     @transaction = Transaction.new(@balance, amount)
     @transaction.debit_transaction
-    complete_transaction
+    complete_transaction(@transaction)
   end
 
   private
 
-  def complete_transaction
-    @transaction_history.push(@transaction)
+  def complete_transaction(transaction)
+    @transaction_history.add_transaction(transaction)
   end
 
 end
