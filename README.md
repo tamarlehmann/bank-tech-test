@@ -1,6 +1,6 @@
 # Bank Tech Test
 
-This project is a JavaScript application designed to mimic the basic functionality of a bank: withdrawals, deposits and viewing a bank statement. Written solo as an example tech test during Makers Academy Week 10.
+This project is a Ruby application designed to mimic the basic functionality of a bank: withdrawals, deposits and viewing a bank statement. Written solo as an example tech test during Makers Academy Week 10.
 
 ## User Stories
 
