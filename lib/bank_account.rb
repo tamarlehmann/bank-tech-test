@@ -14,7 +14,7 @@ class BankAccount
     @balance += amount
     @transaction = Transaction.new(@balance, amount)
     @transaction.credit_transaction
-    complete_transaction(@transaction)
+    complete_transaction(@transaction, amount)
   end
 
   def withdrawal(amount)
@@ -23,13 +23,14 @@ class BankAccount
     @balance -= amount
     @transaction = Transaction.new(@balance, amount)
     @transaction.debit_transaction
-    complete_transaction(@transaction)
+    complete_transaction(@transaction, amount)
   end
 
   private
 
-  def complete_transaction(transaction)
+  def complete_transaction(transaction, amount)
     @transaction_history.add_transaction(transaction)
+    "You have successfully #{transaction.transaction_type}ed £#{amount}. Account balance is £#{@balance}"
   end
 
 end

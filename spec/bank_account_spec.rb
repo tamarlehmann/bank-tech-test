@@ -26,20 +26,32 @@ describe BankAccount do
     it "Increases account balance with value of the deposit" do
       expect{ account.deposit(deposit_amount) }.to change{ account.balance }.by(deposit_amount)
     end
+
+    it "Outputs deposit success message" do
+      expect(account.deposit(deposit_amount)).to eq("You have successfully credited £#{deposit_amount}. Account balance is £#{account.balance}")
+    end
   end
 
   describe "#withdrawal" do
     let(:deposit_amount) { 20 }
     let(:withdrawal_amount) { 20 }
+    let(:large_withdrawal_amount) { 25 }
+
+    before do
+      account.deposit(deposit_amount)
+    end
 
     it "Decreases account balance with value of the withdrawal" do
-      account.deposit(deposit_amount)
       expect{ account.withdrawal(withdrawal_amount) }.to change{ account.balance }.by(-withdrawal_amount)
+    end
+
+    it "Outputs withdrawal success message" do
+      expect(account.withdrawal(withdrawal_amount)).to eq("You have successfully debited £#{withdrawal_amount}. Account balance is £#{account.balance}")
     end
 
     it "Does not allow withdrawal when there are insufficient funds" do
       message = "You have insufficient funds, the maximum you can withdraw is #{account.balance}"
-      expect{ account.withdrawal(withdrawal_amount)}.to raise_error(message)
+      expect{ account.withdrawal(large_withdrawal_amount)}.to raise_error(message)
     end
   end
 end
