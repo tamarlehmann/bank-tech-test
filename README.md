@@ -54,8 +54,15 @@ I want to see my updated account balance after every transaction.
 
 ## Installation Instructions
 
+* Clone this repo.
+* Run `bundle install` in the project root directory.
+
 ## Running The Code
+
+
 
 * This project is a command-line tool.
 
 ## Running The Tests
+
+* Run `rspec` in the command-line.
