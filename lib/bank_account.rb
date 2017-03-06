@@ -11,6 +11,7 @@ class BankAccount
   def deposit(amount)
     @balance += amount
     transaction = Transaction.new(@balance, amount)
+    transaction.credit_transaction
   end
 
   def withdrawal(amount)
@@ -18,6 +19,8 @@ class BankAccount
     raise message if (balance - amount) < MIN_BALANCE
     @balance -= amount
     transaction = Transaction.new(@balance, amount)
+    transaction.debit_transaction
+    p transaction
   end
 
 end
