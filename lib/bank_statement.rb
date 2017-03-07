@@ -26,12 +26,16 @@ class BankStatement
     @contents.reverse.each do |transaction|
       row_text += "#{transaction.date}".ljust(11) + "||"
       if transaction.transaction_type == "credit"
-        row_text += "#{transaction.transaction_amount}".ljust(8) + "||" + " ".ljust(8) + "||"
+        row_text += float("#{transaction.transaction_amount}").ljust(8) + "||" + " ".ljust(8) + "||"
       else
-        row_text += " ".ljust(8) + "||" + "#{transaction.transaction_amount}".ljust(8) + "||"
+        row_text += " ".ljust(8) + "||" + float("#{transaction.transaction_amount}").ljust(8) + "||"
       end
-      row_text += "#{transaction.account_balance}".ljust(8) + "\n"
+      row_text += float("#{transaction.account_balance}").ljust(8) + "\n"
     end
     puts row_text
+  end
+
+  def float(number)
+    sprintf('%.2f', number)
   end
 end

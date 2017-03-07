@@ -2,7 +2,7 @@ require 'bank_statement'
 
 describe BankStatement do
     let(:transaction_history) { double :transaction_history }
-    let(:print_body) { "07/03/2017 ||50      ||        ||50" }
+    let(:print_body) { "07/03/2017 ||50.00   ||        ||50.00  " }
     let(:print_header) { "Date       ||Credit  ||Debit   ||Balance" }
     subject(:statement) { BankStatement.new(transaction_history) }
 
@@ -19,7 +19,7 @@ describe BankStatement do
     end
 
     it "Prints bank statement body" do
-      body = "07/03/2017 ||50      ||        ||50"
+      body = "07/03/2017 ||50.00   ||        ||50.00  "
       expect(statement.print_statement).to include(body)
     end
 
@@ -30,7 +30,7 @@ describe BankStatement do
 
     it "Prints whole bank statement" do
       header = "Date       ||Credit  ||Debit   ||Balance"
-      body = "07/03/2017 ||50      ||        ||50"
+      body = "07/03/2017 ||50.00   ||        ||50.00  "
       expect(statement.print_statement).to eq(header + body)
     end
   end
