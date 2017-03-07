@@ -13,8 +13,7 @@ class BankAccount
 
   def deposit(amount)
     @balance += amount
-    @transaction = Transaction.new(@balance, amount)
-    @transaction.credit_transaction
+    @transaction = Transaction.new(@balance, amount, "credit")
     complete_transaction(@transaction, amount)
   end
 
@@ -22,8 +21,7 @@ class BankAccount
     message = "You have insufficient funds, the maximum you can withdraw is #{balance}"
     raise message if insufficient_funds?(amount)
     @balance -= amount
-    @transaction = Transaction.new(@balance, amount)
-    @transaction.debit_transaction
+    @transaction = Transaction.new(@balance, amount, "debit")
     complete_transaction(@transaction, amount)
   end
 
