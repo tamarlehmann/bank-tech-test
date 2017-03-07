@@ -1,5 +1,6 @@
 require_relative 'transaction'
 require_relative 'transaction_history'
+require_relative 'bank_statement'
 
 class BankAccount
   attr_reader :balance, :transaction_history
@@ -24,6 +25,10 @@ class BankAccount
     @transaction = Transaction.new(@balance, amount)
     @transaction.debit_transaction
     complete_transaction(@transaction, amount)
+  end
+
+  def print_statement(history = @transaction_history.transactions)
+    BankStatement.new(history).print_statement
   end
 
   private

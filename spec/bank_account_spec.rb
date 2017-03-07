@@ -54,4 +54,10 @@ describe BankAccount do
       expect{ account.withdrawal(large_withdrawal_amount)}.to raise_error(message)
     end
   end
+
+  describe "#print_statement" do
+    it "Creates a new instance of Bank Statement" do
+      expect(account).to respond_to(:print_statement).with(1).argument
+    end
+  end
 end
