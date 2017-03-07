@@ -13,14 +13,26 @@ describe BankStatement do
     end
   end
 
+
   describe "#print_statement" do
-    account = BankAccount.new
-    account.deposit(50)
-    account.deposit(50)
-    account.withdrawal(20)
-    it "Prints full statement" do
-      output = "Date       ||Credit  ||Debit   ||Balance\n07/03/2017 ||        ||20.00   ||80.00\n07/03/2017 ||50.00   ||        ||100.00\n07/03/2017 ||50.00   ||        ||50.00"
-      expect{account.print_statement}.to output{output}.to_stdout
+    before do
+      allow(statement).to receive(:print_statement).and_return(print_header + print_body)
+    end
+
+    it "Prints bank statement body" do
+      body = "07/03/2017 ||50.00   ||        ||50.00  "
+      expect(statement.print_statement).to include(body)
+    end
+
+    it "Prints bank statement header" do
+      header = "Date       ||Credit  ||Debit   ||Balance"
+      expect(statement.print_statement).to include(header)
+    end
+
+    it "Prints whole bank statement" do
+      header = "Date       ||Credit  ||Debit   ||Balance"
+      body = "07/03/2017 ||50.00   ||        ||50.00  "
+      expect(statement.print_statement).to eq(header + body)
     end
   end
 end
