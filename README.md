@@ -68,9 +68,11 @@ I want to see my updated account balance after every transaction.
 * See a confirmation message `"You have successfully debited £20. Account balance is £80"`
 * Print a bank statement `account.print_statement`
 * See a statement output:
-`Date       ||Credit  ||Debit   ||Balance
+```
+Date       ||Credit  ||Debit   ||Balance
 07/03/2017 ||        ||20.00   ||80.00   
-07/03/2017 ||100.00  ||        ||100.00 `
+07/03/2017 ||100.00  ||        ||100.00
+```
 
 ## Running The Tests
 
