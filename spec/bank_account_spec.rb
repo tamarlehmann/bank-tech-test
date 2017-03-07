@@ -57,7 +57,7 @@ describe BankAccount do
 
   describe "#print_statement" do
     it "Creates a new instance of Bank Statement" do
-      expect(account).to respond_to(:print_statement).with(1).argument
+      expect(account).to respond_to(:print_statement)
     end
   end
 end

@@ -20,15 +20,15 @@ class BankAccount
 
   def withdrawal(amount)
     message = "You have insufficient funds, the maximum you can withdraw is #{balance}"
-    raise message if (balance - amount) < MIN_BALANCE
+    raise message if insufficient_funds?(amount)
     @balance -= amount
     @transaction = Transaction.new(@balance, amount)
     @transaction.debit_transaction
     complete_transaction(@transaction, amount)
   end
 
-  def print_statement(history = @transaction_history.transactions)
-    BankStatement.new(history).print_statement
+  def print_statement
+    BankStatement.new(@transaction_history.transactions).print_statement
   end
 
   private
@@ -36,6 +36,10 @@ class BankAccount
   def complete_transaction(transaction, amount)
     @transaction_history.add_transaction(transaction)
     "You have successfully #{transaction.transaction_type}ed £#{amount}. Account balance is £#{@balance}"
+  end
+
+  def insufficient_funds?(amount)
+    (@balance - amount) < MIN_BALANCE
   end
 
 end
