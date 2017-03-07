@@ -6,8 +6,7 @@ class BankStatement
   end
 
   def print_statement
-    print_header
-    print_body
+    print print_header + print_body
   end
 
   private
@@ -18,7 +17,7 @@ class BankStatement
     header += "Credit".ljust(8) + "||"
     header += "Debit".ljust(8) + "||"
     header += "Balance\n".ljust(8)
-    puts header
+    header
   end
 
   def print_body
@@ -32,7 +31,7 @@ class BankStatement
       end
       row_text += float("#{transaction.account_balance}").ljust(8) + "\n"
     end
-    puts row_text
+    row_text
   end
 
   def float(number)
